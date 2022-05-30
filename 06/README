@@ -1,10 +1,7 @@
-anna_seli
-=================================================================
-Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
-=================================================================
-
                      Project 06 - Assembler compiler
-					 
+
+Following an overview of the machine and assembly languages presented in the previous chapter, specify an assembler
+which translates assembly to binary CPU instructions.
 					 
 Assembler - The main file, reads the input and rights the output and accecutes the 2 passes on the file.
 Parser - Takes the input and navigates it as A-command or C-command.
