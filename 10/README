@@ -1,0 +1,17 @@
+anna_seli
+=================================================================
+Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
+=================================================================
+
+                     Project 10 -  Jack Analyzer
+
+README - This file
+JackAnalyzer- The main file, creates new file from the argument directory or
+jack file and prepares it to be parsed.
+JackTokenizer - The class that responsible for breaking a jack file into it's
+tokens.
+CompilationEngine - The class that responsible for preparing the tokens to be
+compiled from jack to vm.
+JackAnalyzer
+Makefile
+
