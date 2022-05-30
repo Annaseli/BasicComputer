@@ -4,8 +4,15 @@ Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
 =================================================================
 
                      Project 12 - The OS
+                  --------------------------
+                  
+Operating System
 
-README - This file
+Specify the API of a simple OS that includes math functions, string processing, input/output functionality, and memory management.
+Implement the OS in Jack.
+
+   Files
+-----------
 Array.jack = The Array class
 Memory.jack - The Memory class
 String.jack = The String class
