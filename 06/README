@@ -1,0 +1,15 @@
+anna_seli
+=================================================================
+Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
+=================================================================
+
+                     Project 06 - Assembler compiler
+					 
+					 
+Assembler - The main file, reads the input and rights the output and accecutes the 2 passes on the file.
+Parser - Takes the input and navigates it as A-command or C-command.
+Code - Takes a C-command and break it to it's diffrent components to translate it to binary code. 
+SymbolTable - Contains the class which handles the symbols in asm files.
+Assembler
+Makefile
+
