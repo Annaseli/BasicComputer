@@ -1,0 +1,22 @@
+anna_seli
+===============================================================================
+Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
+
+===============================================================================
+
+                           Project 3 - An HDL File
+                           ----------------------- 
+  
+
+Submitted Files
+---------------
+README - This file.
+Bit.hdl - The Bit chip.
+Register.hdl - The Register chip.
+RAM8.hdl - The RAM8 chip.
+RAM64.hdl - The RAM64 chip.
+RAM512.hdl - The RAM512 chip.
+RAM4K.hdl - The RAM4K chip.
+RAM16K.hdl - The RAM16K chip.
+PC.hdl - The PC chip.
+
