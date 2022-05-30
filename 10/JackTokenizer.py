@@ -46,7 +46,7 @@ class JackTokenizer:
                     line2 += line1[:line1.index("{}".format(sign))]
                 line1 = line1[line1.index("*/") + 2:]
             else:
-                # in that case it's a comment line so I through it
+                # in that case it's a comment line so through it
                 line2 += line1[:line1.index("{}".format(sign))]
                 line1 = ''
 
@@ -200,12 +200,6 @@ class JackTokenizer:
         for token in self.read_file():
             self.token = token
             self.type = self.token_type()
-            if token == '<':
-                self.token = '&lt;'
-            elif token == '>':
-                self.token = '&gt;'
-            elif token == '&':
-                self.token = '&amp;'
             token_typ.append((self.token, self.type))
         return token_typ
 
