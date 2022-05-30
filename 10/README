@@ -1,17 +1,18 @@
-anna_seli
-=================================================================
-Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
-=================================================================
-
                      Project 10 -  Jack Analyzer
+                     
+Compiler
 
-README - This file
+Specify a Jack(JAVA like programming - language) compiler, designed to translate a collection of Jack classes into VM code.
+There is Syntax analysis, semantics and code generation.
+
+
+    Files
+--------------
+
 JackAnalyzer- The main file, creates new file from the argument directory or
 jack file and prepares it to be parsed.
-JackTokenizer - The class that responsible for breaking a jack file into it's
-tokens.
-CompilationEngine - The class that responsible for preparing the tokens to be
-compiled from jack to vm.
+JackTokenizer - The class that responsible for breaking a jack file into it's tokens.
+CompilationEngine - The class that responsible for preparing the tokens to be compiled from jack to vm.
 JackAnalyzer
 Makefile
 
