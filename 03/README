@@ -1,11 +1,14 @@
-
                            Project 3 - An HDL File
                            ----------------------- 
-  
+ 
+Sequential Logic
 
-Submitted Files
+Beginning with D-Flip-Flops (DFFs), which can "remember" inputs and output them later, build a recursive hierarchy of memory systems: 1-bit register, 
+multi-bit register, and a Random Access Memory (RAM).
+Also build a counter chip, which will later function as the computer's program counter.
+
+     Files
 ---------------
-README - This file.
 Bit.hdl - The Bit chip.
 Register.hdl - The Register chip.
 RAM8.hdl - The RAM8 chip.
