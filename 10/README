@@ -1,17 +1,15 @@
-anna_seli
-=================================================================
-Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
-=================================================================
-
                      Project 11 - The Compiler
+                  ----------------------------------
+                  
+Specify a Jack compiler, designed to translate a collection of Jack classes into VM code.
+There is syntax analysis, semantics and code generation.
 
-README - This file
+    Files
+--------------
 JackCompiler - The main file, creates new file from the argument directory or
 jack file and prepares it to be parsed.
-VMWriter- This class contains all the formats for writing all the vm language
-commands to the vm file.
-JackTokenizer - The class that responsible for breaking a jack file into it's
-tokens.
+VMWriter- This class contains all the formats for writing all the vm language commands to the vm file.
+JackTokenizer - The class that responsible for breaking a jack file into it's tokens.
 CompilationEngine - The class that responsible for compiling the tokens by
 using the VMWriter from high language to vm code.
 SymbolTable - The class that responsible for storing the class and subroutines
