@@ -1,16 +1,15 @@
-anna_seli
-===============================================================================
-Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
-
-===============================================================================
-
                            Project 2 - An HDL File
                            ----------------------- 
-  
+ Computer Architecture
+ 
+Specify a simple machine language, giving both its binary and symbolic instruction sets, and build a central-processing-unit (CPU) that can receive 
+such instructions as an input. Next, integrating all the previously built chips into a unified architecture, capable of executing programs written 
+in the specified language.
+Specify how the architecture interacts with memory-mapped screen and keyboard devices.
+This completes the construction of the hardware platform.
 
-Submitted Files
+     Files
 ---------------
-README - This file.
 Memory.hdl - The Memory chip.
 CPU.hdl - The CPU chip.
 Computer.hdl - The Computer chip.
