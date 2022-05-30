@@ -1,5 +1,7 @@
                            Project 2 - An HDL File
                            ----------------------- 
+Boolean Arithmetic
+
 Continuing with combinational logic, specify and build a set of adders. half-adder, full-adder, and parallel adder.
 Next, specify an Arithmetic Logic Unit (ALU) which can perform basic arithmetic, and describe its proposed implementation.  
 
