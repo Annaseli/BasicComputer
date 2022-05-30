@@ -1,0 +1,26 @@
+anna_seli
+===============================================================================
+Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
+===============================================================================
+
+                           Project 2 - An HDL File
+                           ----------------------- 
+  
+
+Submitted Files
+---------------
+README - This file.
+HalfAdder.hdl - The HalfAdder chip.
+FullAdder.hdl - The FullAdder chip.
+Add16.hdl - The Add16 chip.
+Inc16.hdl - The Inc16 chip.
+ALU.hdl - The ALU chip.
+ShiftLeft.hdl - The ShiftLeft chip.
+ShiftRight.hdl - The ShiftRight chip.
+LogicalShiftLeft.hdl - The LogicalShiftLeft chip.
+Mul.hdl - The Mul chip.
+
+Remarks
+-------
+I used the LogicalShiftLeft chip in the Mul chip, which doesn't reserve the sign, but just shifts the bits in the 
+number to the left for the long multiplication purpose.
