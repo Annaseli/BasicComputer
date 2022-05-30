@@ -1,0 +1,17 @@
+anna_seli
+=================================================================
+Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
+=================================================================
+
+                     Project 12 - The OS
+
+README - This file
+Array.jack = The Array class
+Memory.jack - The Memory class
+String.jack = The String class
+Output.jack - The Output class
+Screen.jack - The Screen class
+Keyboard.jack - The Keyboard class
+Math.jack - The Math class
+Sys.jack - The Sys class
+

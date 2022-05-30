@@ -1,0 +1,76 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Memory.jack
+
+/**
+ * This library provides two services: direct access to the computer's main
+ * memory (RAM), and allocation and recycling of memory blocks. The Hack RAM
+ * consists of 32,768 words, each holding a 16-bit binary number.
+ */ 
+class Memory {
+    static Array ram;
+    static Array heap;
+    static Array freeList;
+
+    /** Initializes the class. */
+    function void init() {
+        let ram = 0;
+        let heap = 2048;  // heap base
+        let freeList = heap;
+        let freeList[0] = 14336; // length of free list (including the first and last segments)
+        let freeList[1] = 0; // next of free list
+        return;
+    }
+
+    /** Returns the RAM value at the given address. */
+    function int peek(int address) {
+        return ram[address];
+    }
+
+    /** Sets the RAM value at the given address to the given value. */
+    function void poke(int address, int value) {
+        let ram[address] = value;
+        return;
+    }
+
+    /** Finds an available RAM block of the given size and returns
+     *  a reference to its base address. */
+    function int alloc(int size) {
+        var int bestFit, curr, segLength, prev, save, block;
+        let bestFit = 14337;
+        let curr = freeList;
+        while (~(curr = 0)) {
+            let segLength = curr[0];
+            if ((size < segLength) & (segLength < (size + 4))) {  // (size + 1) <= cur segment length <= (size + 3)
+                if (curr = freeList) {let freeList = curr[1];}  // change freelist as pointer
+                else {let prev[1] = curr[1];} // change prev pointer to next segment
+                return curr + 1;  // block = curr + 1; 
+            }
+            if (segLength > (size + 3)) {
+                if (bestFit > segLength) {
+                    let bestFit = segLength;
+                    let save = curr;
+                }
+            }
+            let prev = curr;
+            let curr = curr[1];
+        }
+        let block = save + save[0] - size; // update block addr to be the best found
+        let save[0] = save[0] - size - 1; // update size of remaining block in freeList
+        let block[-1] = size + 1;  // remember the length of block for dealloc
+        return block;
+    }
+
+    /** De-allocates the given object (cast as an array) by making
+     *  it available for future allocations. */
+    function void deAlloc(Array object) {
+        var int segment, next;
+        let segment = object - 1;
+        let segment[0] = object[-1];
+        let next = freeList;
+        let freeList = segment;
+        let segment[1] = next;
+        return;
+    }    
+}

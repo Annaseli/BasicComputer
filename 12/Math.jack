@@ -1,0 +1,136 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Math.jack
+
+/**
+ * A library of commonly used mathematical functions.
+ * Note: Jack compilers implement multiplication and division using OS method calls.
+ */
+class Math {
+
+    static Array twoToThe;
+    static int shiftQYTimes;
+
+    /** Initializes the library. */
+    function void init() {
+		var int i, powerOfTwo;
+        let twoToThe = Array.new(16);
+		let i = 0;
+		let powerOfTwo = 1;		
+		while (i < 16) {
+			let twoToThe[i] = powerOfTwo;
+			let powerOfTwo = powerOfTwo + powerOfTwo;
+			let i = i + 1;
+		}
+        return;
+    }
+
+    /** Returns the absolute value of x. */
+    function int abs(int x) {
+        if (x < 0) {return -x;}
+        else {return x;}
+    }
+
+    /** Finds the lengh of a binary number n. */
+    function int lenOfBin(int n) {
+		var int len;
+		let len = 0;
+        if (n < 0) {return 16;}  // if it's negative the most significant is 1.
+		while (twoToThe[len] < (n + 1)) {  // the len is the maximum power of 2 that smaller then n, plus 1.
+			let len = len + 1;
+		}
+		return len;
+    }
+
+    /** Returns true if the i-th bit of x is 1, false otherwise. */
+    function boolean bit(int x, int i) {
+        var int And;
+        let And = x & twoToThe[i];
+        if (And = twoToThe[i]) {return true;}
+        else {return false;}
+    }
+
+    /** Returns the product of x and y. 
+     *  When a Jack compiler detects the multiplication operator '*' in the 
+     *  program's code, it handles it by invoking this method. In other words,
+     *  the Jack expressions x*y and multiply(x,y) return the same value.
+     */
+    function int multiply(int x, int y) {
+        var int sum, i, minLen, shiftedNum, smallerNum;
+        var Array temp;
+        let sum = 0;
+        let i = 0;
+        if (x > y) {
+            let shiftedNum = x;
+            let minLen = Math.lenOfBin(y);
+            let smallerNum = y;
+        }
+        else {
+            let shiftedNum = y;
+            let minLen = Math.lenOfBin(x);
+            let smallerNum = x;
+        }
+    
+        while (i < minLen) {  
+            if (Math.bit(smallerNum, i)) {  // If i-th bit of x is 1
+                let sum = sum + shiftedNum;
+            }
+            let shiftedNum = shiftedNum + shiftedNum;  //ShiftedNum = ShiftedNum * 2
+            let i = i + 1;
+        }
+        return sum;
+    }
+
+    /** Returns the integer part of |x|/|y|. */
+    function int divideHelper(int x, int y) {
+        var int q;
+        if ((y > x) | (y < 0)) {return 0;}
+        let q = Math.divideHelper(x, y + y);
+        if ((x - shiftQYTimes) < y) {return q + q;} // If (x - 2*q*y) < y
+        else {
+            let shiftQYTimes = shiftQYTimes + y;
+            return q + q + 1;
+        }
+    }
+
+    /** Returns the integer part of x/y.
+     *  When a Jack compiler detects the multiplication operator '/' in the 
+     *  program's code, it handles it by invoking this method. In other words,
+     *  the Jack expressions x/y and divide(x,y) return the same value.
+     */
+    function int divide(int x, int y) {
+        var int posRes;
+        let shiftQYTimes = 0;
+        let posRes = Math.divideHelper(Math.abs(x), Math.abs(y));
+        // if one posotive and the other one negative the result is negative.
+        if (((y < 0) & (x > 0)) | ((x < 0) & (y > 0))) {return -posRes;} 
+        else {return posRes;}
+    }
+
+    /** Returns the integer part of the square root of x. */
+    function int sqrt(int x) {
+        var int y, j, newY, mul;
+        let y = 0;
+        let j = 7; // (2^7)^2 < 2^15 < (2^8)^2
+        while (j > (-1))  {
+            let newY = y + twoToThe[j];
+            let mul = (newY * newY);
+            if (((mul < x) | (mul = x)) & (mul > 0)) {let y = newY;}
+            let j = j - 1;
+        }
+        return y;
+    }
+
+    /** Returns the greater number. */
+    function int max(int a, int b) {
+        if (b > a) {return b;}
+        else {return a;}
+    }
+
+    /** Returns the smaller number. */
+    function int min(int a, int b) {
+        if (b < a) {return b;}
+        else {return a;}
+    }
+}
