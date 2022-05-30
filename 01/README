@@ -1,5 +1,7 @@
                            Project 1 - An HDL File
                            ----------------------- 
+Boolean Logic
+
 Beginning at the Nand level, specify and build a set of elementary logic gates, multiplexors, and their multi-bit versions.
 In addition, describe how chips can be built and tested using a simple version of HDL (Hardware Description Language) and the supplied Hardware Simulator.
 
