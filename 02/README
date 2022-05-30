@@ -1,11 +1,11 @@
-
                            Project 2 - An HDL File
                            ----------------------- 
-  
+Continuing with combinational logic, specify and build a set of adders. half-adder, full-adder, and parallel adder.
+Next, specify an Arithmetic Logic Unit (ALU) which can perform basic arithmetic, and describe its proposed implementation.  
 
-Submitted Files
+
+    Files
 ---------------
-README - This file.
 HalfAdder.hdl - The HalfAdder chip.
 FullAdder.hdl - The FullAdder chip.
 Add16.hdl - The Add16 chip.
