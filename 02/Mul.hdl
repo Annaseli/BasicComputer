@@ -1,0 +1,53 @@
+CHIP Mul{
+    IN a[16], b[16];
+    OUT out[16];
+
+    PARTS:
+        Mux16 (a=false, b=a, sel=b[0], out=out0);
+        LogicalShiftLeft (in=a, out=shift1);
+        Mux16 (a=false, b=shift1, sel=b[1], out=out1);
+        LogicalShiftLeft (in=shift1, out=shift2);
+        Mux16 (a=false, b=shift2, sel=b[2], out=out2);
+        LogicalShiftLeft (in=shift2, out=shift3);
+        Mux16 (a=false, b=shift3, sel=b[3], out=out3);
+        LogicalShiftLeft (in=shift3, out=shift4);
+        Mux16 (a=false, b=shift4, sel=b[4], out=out4);
+        LogicalShiftLeft (in=shift4, out=shift5);
+        Mux16 (a=false, b=shift5, sel=b[5], out=out5);
+        LogicalShiftLeft (in=shift5, out=shift6);
+        Mux16 (a=false, b=shift6, sel=b[6], out=out6);
+        LogicalShiftLeft (in=shift6, out=shift7);
+        Mux16 (a=false, b=shift7, sel=b[7], out=out7);
+        LogicalShiftLeft (in=shift7, out=shift8);
+        Mux16 (a=false, b=shift8, sel=b[8], out=out8);
+        LogicalShiftLeft (in=shift8, out=shift9);
+        Mux16 (a=false, b=shift9, sel=b[9], out=out9);
+        LogicalShiftLeft (in=shift9, out=shift10);
+        Mux16 (a=false, b=shift10, sel=b[10], out=out10);
+        LogicalShiftLeft (in=shift10, out=shift11);
+        Mux16 (a=false, b=shift11, sel=b[11], out=out11);
+        LogicalShiftLeft (in=shift11, out=shift12);
+        Mux16 (a=false, b=shift12, sel=b[12], out=out12);
+        LogicalShiftLeft (in=shift12, out=shift13);
+        Mux16 (a=false, b=shift13, sel=b[13], out=out13);
+        LogicalShiftLeft (in=shift13, out=shift14);
+        Mux16 (a=false, b=shift14, sel=b[14], out=out14);
+        LogicalShiftLeft (in=shift14, out=shift15);
+        Mux16 (a=false, b=shift15, sel=b[15], out=out15);
+
+        Add16 (a=out0, b=out1, out=added1);
+        Add16 (a=added1, b=out2, out=added2);
+        Add16 (a=added2, b=out3, out=added3);
+        Add16 (a=added3, b=out4, out=added4);
+        Add16 (a=added4, b=out5, out=added5);
+        Add16 (a=added5, b=out6, out=added6);
+        Add16 (a=added6, b=out7, out=added7);
+        Add16 (a=added7, b=out8, out=added8);
+        Add16 (a=added8, b=out9, out=added9);
+        Add16 (a=added9, b=out10, out=added10);
+        Add16 (a=added10, b=out11, out=added11);
+        Add16 (a=added11, b=out12, out=added12);
+        Add16 (a=added12, b=out13, out=added13);
+        Add16 (a=added13, b=out14, out=added14);
+        Add16 (a=added14, b=out15, out=out);
+}
