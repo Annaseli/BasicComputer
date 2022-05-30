@@ -1,0 +1,13 @@
+anna_seli
+=================================================================
+Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
+=================================================================
+
+                     Project 07 - VMTranslator
+
+README - This file
+VMTranslator - The main file, reads the input and prepares the file to be translated.
+Parser - Parsers the file into it's components.
+Code - Codes basic commands from the parsed file.
+VMTranslator
+Makefile
