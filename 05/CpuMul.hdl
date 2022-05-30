@@ -1,0 +1,61 @@
+/**
+* This chip is an extension of the book CPU by using the extended ALU.
+* More specificly if instruction[15]==0 or (instruction[14] and instruction[13] equals 1)
+* the CpuMul behave exactly as the book CPU.
+* While if it is C instruction and instruction[13] == 0 the output will be D*A/M 
+* (according to instruction[12]).
+* Moreover, if it is c instruction and instruction[14] == 0 it will behave as follows:
+*
+* instruction:  | 12 | 11 | 10 |
+* _____________________________
+* shift left D  | 0  | 1  | 1  |
+* shift left A  | 0  | 1  | 0  |
+* shift left M  | 1  | 1  | 0  |
+* shift right D | 0  | 0  | 1  |
+* shift right A | 0  | 0  | 0  |
+* shift right M | 1  | 0  | 0  |
+**/
+
+CHIP CpuMul{
+
+    IN  inM[16],         // M value input  (M = contents of RAM[A])
+        instruction[16], // Instruction for execution
+        reset;           // Signals whether to re-start the current
+                         // program (reset=1) or continue executing
+                         // the current program (reset=0).
+
+    OUT outM[16],        // M value output
+        writeM,          // Write into M? 
+        addressM[15],    // Address in data memory (of M)
+        pc[15];          // address of next instruction
+
+     PARTS:
+        Mux16 (a=instruction, b=outALU, sel=instruction[15], out=outMux1);
+        
+        Not (in=instruction[5], out=notd1);
+        Nand (a=instruction[15], b=notd1, out=load1);
+        ARegister (in=outMux1, load=load1, out=outA, out[0..14]=addressM);
+
+        Not (in=instruction[12], out=notafrominst);
+        And (a=instruction[15], b=notafrominst, out=sel);        
+        Mux16( a=inM, b=outA, sel=sel, out=outMux2);
+
+        And (a=instruction[15], b=instruction[4], out=load2);               
+        DRegister (in=outALU, load=load2, out=outD);
+
+        ExtendAlu (x=outD, y=outMux2, instruction[8]=instruction[14], instruction[7]=instruction[13], instruction[6]=instruction[12],                            instruction[5]=instruction[11], instruction[4]=instruction[10], instruction[3]=instruction[9], 
+                          instruction[2]=instruction[8], instruction[1]=instruction[7], instruction[0]=instruction[6], out=outALU, out=outM,                              zr=zr, ng=ng);
+
+        And (a=instruction[15], b=instruction[3], out=writeM);    
+  
+        Or (a=zr, b=ng, out=outOr1);
+        Not (in=outOr1, out=notoutOr1);
+        And (a=ng, b=instruction[2], out=neg);
+        And (a=zr, b=instruction[1], out=zero);
+        And (a=notoutOr1, b=instruction[0], out=pos);
+        Or (a=neg, b=zero, out=outOr2);
+        Or (a=outOr2, b=pos, out=load3);
+
+        And (a=instruction[15], b=load3, out=load4);
+        PC (in=outA, inc=true, load=load4, reset=reset, out[0..14]=pc);        
+}

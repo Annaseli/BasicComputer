@@ -1,0 +1,40 @@
+/**
+* The input of the extends ALU is instruction[9] and x[16],y[16].
+* the output is define as follows:
+* If instruction[7..8] equals 1 the the output is exactly as the ALU.
+* Where instruction[5]=zx,instruction[4]=nx,...,instruction[0]=no.
+* If instruction[7] equals 0 the output will be x*y and disregard the rest 
+* of the instruction.
+*
+* If instruction[8] equals 0 the output will be shift.
+* Then, if instruction[4] equals 0 it will return shift of y otherwise shift 
+* of x, moreover if instruction[5] equals 0 it will return shift right 
+* otherwise shift left.
+**/
+CHIP ExtendAlu{
+     IN x[16],y[16],instruction[9];
+     OUT out[16],zr,ng;
+     
+     PARTS:
+         Mul (a=x, b=y, out=outMul);
+         ShiftLeft (in=x, out=outLeftX);
+         ShiftRight (in=x, out=outRightX);
+         ShiftLeft (in=y, out=outLeftY);
+         ShiftRight (in=y, out=outRightY);
+
+         ALU (x=x, y=y, zx=instruction[5], nx=instruction[4], zy=instruction[3], ny=instruction[2], f=instruction[1], no=instruction[0],                                out=outALU, zr=zr1, ng=ng1);
+         Mux4Way16 (a=outRightY, b=outRightX ,c=outLeftY, d=outLeftX, sel=instruction[4..5], out=outShift);
+         Mux4Way16 (a=outMul, b=outShift ,c=outMul, d=outALU, sel=instruction[7..8], out=out, out[0..7]=out1, out[8..15]=out2,                                                out[15]=out3);
+
+         Or8Way(in[0..7]=out1, out=part1);                                                                                                // check for output==0
+         Or8Way(in[0..7]=out2, out=part2);                                                                                               // check for output==0
+         Mux (a=true, b=false, sel=part1, out=outpart1);                                                                       // check for output==0
+         Mux (a=true, b=false, sel=part2, out=outpart2);                                                                      // check for output==0
+         And (a=outpart1, b=outpart2, out=zr2);                                                                                    //check zr
+        
+         Mux (a=false, b=true, sel=out3, out=ng2);                                                                                //check ng    
+
+         And (a=instruction[7], b=instruction[8], out=outAnd);  
+         Mux (a=zr2, b=zr1, sel=outAnd, out=zr);
+         Mux (a=ng2, b=ng1, sel=outAnd, out=ng);
+}
