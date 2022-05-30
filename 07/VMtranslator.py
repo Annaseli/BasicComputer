@@ -1,6 +1,7 @@
 import os
 import glob
 import sys
+import CodeWriter
 import Parser
 
 
@@ -19,6 +20,8 @@ def create_asm_file(files_lst, asm_file):
         os.remove(asm_file)
     # open the asm file and initiates Bootstrap code.
     final_file = open(asm_file, "a")
+    final_file.write(CodeWriter.write_init())
+    final_file.write("\n")
     for file in files_lst:
         Parser.Parser(file).advance(final_file)
     final_file.close()
@@ -49,7 +52,6 @@ if __name__ == '__main__':
                 create_asm_file(all_files, final_file)
         else:
             all_files = [sys.argv[1]]
-            #final_file = os.path.basename(sys.argv[1]).replace("vm", "asm")
             final_file = sys.argv[1].replace("vm", "asm")
             create_asm_file(all_files, final_file)
 
