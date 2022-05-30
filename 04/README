@@ -1,15 +1,11 @@
-anna_seli
-===============================================================================
-Anna Seliverstov, ID 317339505, anna.seliverstov@mail.huji.ac.il
-===============================================================================
-
                            Project 4 - An ASM File
                            ----------------------- 
-  
+Machine Language
 
-Submitted Files
+Low-level programming in machine language, also called Assembly, and get acquainted with the Hack computer platform.  
+
+     Files
 ---------------
-README - This file.
 mult/Mult.asm - Multiplication in assembly.
 divide/Divide.asm - Dividing in assembly.
 sort/Sort.asm - Sorting by bubble-sort algorhthm in assembly.
